@@ -1,4 +1,4 @@
-package stringx
+package password
 
 import (
 	"fmt"
