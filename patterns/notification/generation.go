@@ -3,25 +3,19 @@ package notification
 // ExecutorsOption the generation option of the Executors
 type ExecutorsOption func(executors Executors)
 
-// NewExecutor the generation of the Executor
-type NewExecutor func() Executor
+// ExecutorFunc the generation of the Executor
+type ExecutorFunc func() Executor
 
-func WithSendgrid(newSendgrid NewExecutor) ExecutorsOption {
+func WithExecutor(exeFunc ExecutorFunc) ExecutorsOption {
 	return func(executors Executors) {
-		executors.Add(newSendgrid())
-	}
-}
-
-func WithTwilio(newTwilio NewExecutor) ExecutorsOption {
-	return func(executors Executors) {
-		executors.Add(newTwilio())
+		executors.Add(exeFunc())
 	}
 }
 
 // NewExecutors generation in functional option pattern
-func NewExecutors(options ...ExecutorsOption) Executors {
+func NewExecutors(opts ...ExecutorsOption) Executors {
 	notifier := new(Notifier)
-	for _, option := range options {
+	for _, option := range opts {
 		option(notifier)
 	}
 

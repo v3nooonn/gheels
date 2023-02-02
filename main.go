@@ -14,7 +14,7 @@ func main() {
 
 func pushNotification() {
 	notifier := notification.NewExecutors(
-		notification.WithSendgrid(func() notification.Executor {
+		notification.WithExecutor(func() notification.Executor {
 			return &email.Sendgrid{
 				Target:   "email@gmail.com",
 				Template: "template_id",
@@ -23,7 +23,7 @@ func pushNotification() {
 				},
 			}
 		}),
-		notification.WithTwilio(func() notification.Executor {
+		notification.WithExecutor(func() notification.Executor {
 			return &sms.Twilio{
 				Target: "+1111111111",
 				ParamMap: map[string]string{
