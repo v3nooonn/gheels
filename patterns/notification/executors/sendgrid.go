@@ -1,4 +1,4 @@
-package email
+package executors
 
 import (
 	"context"

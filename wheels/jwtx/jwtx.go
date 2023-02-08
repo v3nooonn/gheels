@@ -1,20 +1,11 @@
 package jwtx
 
 import (
-	"regexp"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/pkg/errors"
 )
-
-// Parse parsing and basic validating token string from Authentication header
-func Parse(s string) (string, bool) {
-	jwtPrefix := regexp.MustCompile(`^Bearer `)
-	jwtPattern := regexp.MustCompile(`^(Bearer ){1}([-_a-zA-Z0-9]+)(\.){1}([-_a-zA-Z0-9]+)(\.){1}([-_a-zA-Z0-9]+)$`)
-
-	return string(jwtPrefix.ReplaceAll([]byte(s), []byte(""))), jwtPattern.Match([]byte(s))
-}
 
 // Assigner jwt token assigner
 type Assigner interface {
