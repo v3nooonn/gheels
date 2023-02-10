@@ -5,7 +5,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/v3nooonn/gheels/tools/errorx"
+	"github.com/v3nooonn/gheels/wheels/errorx"
 )
 
 func ValidatePassword(pwd string, min, max int, symbols string) error {

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+package notification;
+
+option go_package = "/ntf_pkg";
+
+service NotificationService {
+  rpc Push(Carrier) returns (Empty);
+}
+
+message Empty {}
+
+message Carrier {
+  Subject subject = 1;
+  Audience audience = 2;
+  repeated ReachOut reach_outs = 3;
+}
+
+message Subject {
+  string tenant = 1;
+  optional string name = 2;
+  optional string encryption = 3;
+  optional string domain = 4;
+  optional string address = 6;
+}
+
+message Audience {
+  string account = 1;
+  optional string first_name = 2;
+  optional string last_name = 3;
+}
+
+message ReachOut {
+  Via via = 1;
+  Destination destination = 2;
+  google.protobuf.Struct param_map = 3;
+  optional string content = 4;
+  optional string template_id = 5;
+  optional string attachment = 6;
+}
+
+enum Via {
+  Unknown = 0;
+  Twilio = 1;
+  Sendgrid = 2;
+}
+
+message Destination {
+  string address = 1;
+  optional string name = 2;
+}
+
+message Target {
+  string address = 1;
+  optional string name = 2;
+}
