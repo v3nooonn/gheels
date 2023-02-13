@@ -10,7 +10,7 @@ import (
 func FuzzJwtParse(f *testing.F) {
 	f.Add("Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.in.ci")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, true, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -18,7 +18,7 @@ func FuzzJwtParse(f *testing.F) {
 func FuzzJwtParseFailedCase0(f *testing.F) {
 	f.Add("Bearer ey.in.ci")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -26,7 +26,7 @@ func FuzzJwtParseFailedCase0(f *testing.F) {
 func FuzzJwtParseFailedCase1(f *testing.F) {
 	f.Add("freestyle")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -34,7 +34,7 @@ func FuzzJwtParseFailedCase1(f *testing.F) {
 func FuzzJwtParseFailedCase2(f *testing.F) {
 	f.Add("Bearer")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -42,7 +42,7 @@ func FuzzJwtParseFailedCase2(f *testing.F) {
 func FuzzJwtParseFailedCase3(f *testing.F) {
 	f.Add("Bearer ")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -50,7 +50,7 @@ func FuzzJwtParseFailedCase3(f *testing.F) {
 func FuzzJwtParseFailedCase4(f *testing.F) {
 	f.Add("Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -58,7 +58,7 @@ func FuzzJwtParseFailedCase4(f *testing.F) {
 func FuzzJwtParseFailedCase5(f *testing.F) {
 	f.Add("Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -66,7 +66,7 @@ func FuzzJwtParseFailedCase5(f *testing.F) {
 func FuzzJwtParseFailedCase6(f *testing.F) {
 	f.Add("Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.x")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }
@@ -74,7 +74,7 @@ func FuzzJwtParseFailedCase6(f *testing.F) {
 func FuzzJwtParseFailedCase7(f *testing.F) {
 	f.Add("Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.x.")
 	f.Fuzz(func(t *testing.T, jwt string) {
-		_, ok := NewES256Parser().Parse(jwt)
+		_, ok := ES256.Parse(jwt)
 		assert.Equal(t, false, ok, fmt.Sprintf("input: %s, result: %v\n", jwt, ok))
 	})
 }

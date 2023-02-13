@@ -7,16 +7,25 @@ import (
 	"regexp"
 )
 
+func init() {
+	ES256 = &es256Parser{
+		Header: Header{
+			Algorithm: AlgEs256,
+			Type:      "JWT",
+		},
+	}
+}
+
 type (
 	Parser interface {
 		Parse(s string) (string, bool)
 	}
 
-	ES256Parser struct {
-		Header JWTHeader
+	es256Parser struct {
+		Header Header
 	}
 
-	JWTHeader struct {
+	Header struct {
 		Algorithm Algorithm `json:"alg"`
 		Type      string    `json:"typ"`
 	}
@@ -25,21 +34,14 @@ type (
 )
 
 const (
-	ES256 Algorithm = "ES256"
-	HS256 Algorithm = "HS256"
+	AlgEs256 Algorithm = "ES256"
+	AlgHs256 Algorithm = "HS256"
 )
 
-func NewES256Parser() Parser {
-	return &ES256Parser{
-		Header: JWTHeader{
-			Algorithm: ES256,
-			Type:      "JWT",
-		},
-	}
-}
+var ES256 *es256Parser
 
 // Parse parsing and basic validating token string from Authentication header
-func (p *ES256Parser) Parse(s string) (string, bool) {
+func (p *es256Parser) Parse(s string) (string, bool) {
 	bytes, err := json.Marshal(p.Header)
 	if err != nil {
 		return "", false
