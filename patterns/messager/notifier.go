@@ -1,6 +1,8 @@
-package notification
+package messager
 
-import "context"
+import (
+	"context"
+)
 
 type (
 	// Executor abstraction of execution

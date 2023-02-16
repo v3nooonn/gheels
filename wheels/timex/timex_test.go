@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/v3nooonn/gheels/tools/constant"
+	"github.com/v3nooonn/gheels/wheels/constant"
 
 	"github.com/stretchr/testify/assert"
 )

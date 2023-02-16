@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"github.com/v3nooonn/gheels/patterns/notification"
-	"github.com/v3nooonn/gheels/patterns/notification/executors"
+	"github.com/v3nooonn/gheels/patterns/messager"
+	executors2 "github.com/v3nooonn/gheels/patterns/messager/executors"
 )
 
 func main() {
@@ -12,9 +12,9 @@ func main() {
 }
 
 func pushNotification() {
-	notifier := notification.NewNotifier(
-		notification.WithExecutor(func() notification.Executor {
-			return &executors.Sendgrid{
+	notifier := messager.NewNotifier(
+		messager.WithExecutor(func() messager.Executor {
+			return &executors2.Sendgrid{
 				Target:   "email@gmail.com",
 				Template: "template_id",
 				ParamMap: map[string]string{
@@ -22,8 +22,8 @@ func pushNotification() {
 				},
 			}
 		}),
-		notification.WithExecutor(func() notification.Executor {
-			return &executors.Twilio{
+		messager.WithExecutor(func() messager.Executor {
+			return &executors2.Twilio{
 				Target: "+1111111111",
 				ParamMap: map[string]string{
 					"key": "value",

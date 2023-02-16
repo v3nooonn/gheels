@@ -1,4 +1,4 @@
-package notification
+package messager
 
 type (
 	// NotifierOption the generation option of the Executors

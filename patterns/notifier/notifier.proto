@@ -4,9 +4,9 @@ import "google/protobuf/struct.proto";
 
 package notification;
 
-option go_package = "/ntf_pkg";
+option go_package = "/notifier";
 
-service NotificationService {
+service MessageNotifier {
   rpc Push(Carrier) returns (Empty);
 }
 

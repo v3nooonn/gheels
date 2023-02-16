@@ -1,8 +1,9 @@
 package carrier
 
 import (
-	"github.com/v3nooonn/gheels/patterns/notification"
-	"github.com/v3nooonn/gheels/patterns/notification/executors"
+	"github.com/v3nooonn/gheels/patterns/messager"
+	"github.com/v3nooonn/gheels/patterns/messager/executors"
+
 	"google.golang.org/protobuf/types/known/structpb"
 )
 
@@ -34,7 +35,7 @@ const (
 	Sendgrid
 )
 
-func (c *Carrier) Mapping() notification.Executor {
+func (c *Carrier) Mapping() messager.Executor {
 	// TODO: generate a specific Executor according to Carrier
 	return &executors.Sendgrid{
 		Target:   "",
