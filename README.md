@@ -13,4 +13,4 @@ Independent
 
 might be included.
 
-And forgiving my laze, none entrance include, only the content and their dependencies of the tools themselves. 
+And forgiving my laze, none entrance included, only the content and their dependencies of the tools themselves. 
