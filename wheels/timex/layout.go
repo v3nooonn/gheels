@@ -1,4 +1,4 @@
-package constant
+package timex
 
 type TimeLayout string
 
