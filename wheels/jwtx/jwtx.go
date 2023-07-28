@@ -14,7 +14,8 @@ type Assigner interface {
 
 type CustomizedAssigner struct {
 	jwt.StandardClaims
-	Key string
+	Algorithm Algorithm
+	Key       string
 }
 
 type CustomizedClaim struct {
@@ -37,7 +38,7 @@ func (c *CustomizedAssigner) Assign() (string, error) {
 			IssuedAt: now.Unix(),
 		},
 	}
-	token := jwt.NewWithClaims(jwt.GetSigningMethod(jwt.SigningMethodES256.Name), claim)
+	token := jwt.NewWithClaims(jwt.GetSigningMethod(c.Algorithm.ToString()), claim)
 
 	return token.SignedString(rsaKey)
 }

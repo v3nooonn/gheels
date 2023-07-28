@@ -33,6 +33,10 @@ type (
 	Algorithm string
 )
 
+func (a Algorithm) ToString() string {
+	return string(a)
+}
+
 const (
 	AlgEs256 Algorithm = "ES256"
 	AlgHs256 Algorithm = "HS256"
